@@ -1,0 +1,10 @@
+venv/
+__pycache__
+*.log
+experiments/
+.ipynb_checkpoints
+temp_file*
+.DS_Store
+cem500k_mocov2_resnet50_200ep.pth.tar
+deepPI_lucchi_deploy.pth
+deepPI_skeletalMuscle_deploy.pth
