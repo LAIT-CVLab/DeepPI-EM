@@ -58,6 +58,3 @@ This project uses publicly available **electron microscopy datasets**:
   : A **custom dataset** developed by our team for mitochondria segmentation in **skeletal muscle transmission electron microscopy (TEM) images**.  
 
 📌 **Note**: These datasets are publicly accessible and can be used for research purposes.  
-
-  
-
