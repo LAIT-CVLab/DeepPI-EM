@@ -13,6 +13,8 @@ Authors : Chan Jang, Hojun Lee, [Jaejun Yoo](https://scholar.google.co.kr/citati
 - `model.py`: Definitions of the neural network architectures used.
 - `test.py`: Scripts for testing the trained models.
 - `train_validate.py`: Procedures for training and validating the models.
+- `gui/`: Contains interactive segmentation logic and user interface components.
+- `run_gui.py`: Launches the graphical user interface for interactive image annotation and analysis.
 
 ## Usage
 ### Installation
@@ -38,23 +40,35 @@ pip install -r requirements.txt
 ```
 
 ### Training & Evaluation
-All training and testing parameters can be configured in [`config.py`](config.py).
+All training and testing parameters can be configured in [`config.py`](config.py). And pre-trained models required for training and evaluation can be downloaded from the following links:
+  - [CEM500k pre-trained model](https://github.com/volume-em/cem-dataset)
+  - [Our model (DeepPI-EM)](https://yoonlab.unist.ac.kr/index.php/research/mitochondria-tem-dataset/)
+
 #### Training
 ```bash
 python main.py
 ```
+
 #### Evaluating
 ```bash
 python test.py
 ```
 
+
+### Graphical User Interface (GUI)
+We provide a simple GUI for evaluating the trained model and enabling practical interaction. A demo using the Lucchi++ dataset is available **[here](https://03aa313d8fed0c22c2.gradio.live)**.  
+Users can specify any trained model within [`run_gui.py`](run_gui.py) and launch the interface as follows:
+```bash
+python run_gui.py
+```
+
 ## Dataset
 
 This project uses publicly available **electron microscopy datasets**:
-- **[Lucchi++ Dataset](https://casser.io/connectomics/)**
-- **[Kasthuri Dataset](https://casser.io/connectomics/)**
-- **[MitoEM-H](https://mitoem.grand-challenge.org/)**
-- **[Skeletal Muscle TEM Dataset](https://yoonlab.unist.ac.kr/index.php/research/mitochondria-tem-dataset/)**  
-  : A **custom dataset** developed by our team for mitochondria segmentation in **skeletal muscle transmission electron microscopy (TEM) images**.  
+- [Lucchi++ Dataset](https://casser.io/connectomics/)
+- [Kasthuri Dataset](https://casser.io/connectomics/)
+- [MitoEM-H](https://mitoem.grand-challenge.org/)
+- [Skeletal Muscle TEM Dataset](https://yoonlab.unist.ac.kr/index.php/research/mitochondria-tem-dataset/)
+  : A custom dataset developed by our team for mitochondria segmentation in skeletal muscle transmission electron microscopy (TEM) images.  
 
 📌 **Note**: These datasets are publicly accessible and can be used for research purposes.  
