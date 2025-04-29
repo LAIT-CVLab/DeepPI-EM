@@ -65,7 +65,7 @@ python test.py
 
 
 ### Graphical User Interface (GUI)
-We provide a simple GUI for evaluating the trained model and enabling practical interaction. A demo using the Lucchi++ dataset is available **[here](https://15144c8fd0e5ba9146.gradio.live)**.  
+We provide a simple GUI for evaluating the trained model and enabling practical interaction. A demo using the Lucchi++ dataset is available **[here](https://b17f47699f8116e70e.gradio.live)**.  
 Users can specify any trained model within [`run_gui.py`](run_gui.py) and launch the interface as follows:
 ```bash
 python run_gui.py
