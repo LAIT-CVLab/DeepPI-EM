@@ -55,6 +55,8 @@ All training and testing parameters can be configured in [`config.py`](config.py
   - [CEM500k pre-trained model](https://github.com/volume-em/cem-dataset)
   - [Our model (DeepPI-EM)](https://drive.google.com/drive/folders/1n2ZqbJEHPyMB_6a6OTBBACt5Jct2PZJc?usp=sharing)
 
+If you want to train the model with a new dataset, please define the dataset by following the template in the ['pi_seg/data/datasets'](pi_seg/data/datasets) folder. Afterward, add the dataset object to the ['pi_seg/data/datasets/init.py'](pi_seg/data/datasets/init.py) file before proceeding.
+
 #### Training
 ```bash
 python main.py
@@ -64,7 +66,6 @@ python main.py
 ```bash
 python test.py
 ```
-
 
 ### Graphical User Interface (GUI)
 We provide a simple GUI for evaluating the trained model and enabling practical interaction. A demo using the Lucchi++ dataset is available **[here](https://caf65f85bdb3d2cb0f.gradio.live)**.
