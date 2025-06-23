@@ -55,7 +55,7 @@ All training and testing parameters can be configured in [`config.py`](config.py
   - [CEM500k pre-trained model](https://github.com/volume-em/cem-dataset)
   - [Our model (DeepPI-EM)](https://drive.google.com/drive/folders/1n2ZqbJEHPyMB_6a6OTBBACt5Jct2PZJc?usp=sharing)
 
-If you want to train the model with a new dataset, please define the dataset by following the template in the ['pi_seg/data/datasets'](pi_seg/data/datasets) folder. Afterward, add the dataset object to the ['pi_seg/data/datasets/init.py'](pi_seg/data/datasets/init.py) file before proceeding.
+If you want to train the model with a new dataset, please define the dataset by following the template in the ['pi_seg/data/datasets'](pi_seg/data/datasets) folder. Afterward, add the dataset object to the ['pi_seg/data/datasets/__init__.py'](pi_seg/data/datasets/__init__.py) file before proceeding.
 
 #### Training
 ```bash
