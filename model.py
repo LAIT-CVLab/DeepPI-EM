@@ -4,7 +4,7 @@ import segmentation_models_pytorch as smp
 from copy import deepcopy
 from pi_seg.model.is_deepPI_model import DeepPI
 from pi_seg.model import initializer
-from config import device, PRE_TRAINED
+from config import device, PRE_TRAINED, PRE_TRAINED_PATH
 
 def load_unet():
     # Load UNet with ResNet50 backbone
@@ -12,7 +12,9 @@ def load_unet():
     
     """Load and customize the pre-trained UNet model."""
     if PRE_TRAINED:
-        state = torch.load('./pi_seg/model/checkpoints/cem500k_mocov2_resnet50_200ep.pth.tar', map_location='cpu')
+        print(f"PRE_TRAINED is True. Loading weights from: {PRE_TRAINED_PATH}")
+
+        state = torch.load(PRE_TRAINED_PATH, map_location='cpu')
         state_dict = state['state_dict']
 
         # Modify state dictionary keys
@@ -22,6 +24,8 @@ def load_unet():
             del unet_state_dict[k]
 
         unet.load_state_dict(unet_state_dict, strict=False)
+        
+        print("Pre-trained UNet weights loaded successfully.")
 
     ## Customize model layers
     encoder_conv1 = nn.Conv2d(64+1, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
@@ -58,6 +62,7 @@ def initialize_model():
 
     # Enable multi-GPU if available
     if torch.cuda.device_count() > 1:
+        print(f"Using {torch.cuda.device_count()} GPUs for training.")
         model = nn.DataParallel(model)
 
     return model
