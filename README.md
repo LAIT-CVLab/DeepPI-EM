@@ -1,6 +1,8 @@
 # DeepPI-EM: Deep learning-driven automated mitochondrial segmentation for analysis of complex transmission electron microscopy images
 Authors : Chan Jang, Hojun Lee, [Jaejun Yoo](https://scholar.google.co.kr/citations?hl=en&user=7NBlQw4AAAAJ), [Haejin Yoon](https://scholar.google.co.kr/citations?user=1paFUdEAAAAJ&hl=en&oi=ao)
 
+📄 [Publication](https://doi.org/10.1038/s41598-025-03311-1)
+
 ## Abstract
 > Mitochondria are central to cellular energy production and regulation, with their morphology tightly linked to functional performance. Precise analysis of mitochondrial ultrastructure is crucial for understanding cellular bioenergetics and pathology. While transmission electron microscopy (TEM) remains the gold standard for such analyses, traditional manual segmentation methods are time-consuming and prone to error. In this study, we introduce a novel deep learning framework that combines probabilistic interactive segmentation with automated quantification of mitochondrial morphology. Leveraging uncertainty analysis and real-time user feedback, the model achieves comparable segmentation accuracy while reducing analysis time by 90% compared to manual methods. Evaluated on both benchmark Lucchi++ datasets and real-world TEM images of mouse skeletal muscle, the pipeline not only improved efficiency but also identified key pathological differences in mitochondrial morphology between wild-type and mdx mouse models of Duchenne muscular dystrophy. This automated approach offers a powerful, scalable tool for mitochondrial analysis, enabling high-throughput and reproducible insights into cellular function and disease mechanisms.
 
@@ -53,6 +55,8 @@ All training and testing parameters can be configured in [`config.py`](config.py
   - [CEM500k pre-trained model](https://github.com/volume-em/cem-dataset)
   - [Our model (DeepPI-EM)](https://drive.google.com/drive/folders/1n2ZqbJEHPyMB_6a6OTBBACt5Jct2PZJc?usp=sharing)
 
+If you want to train the model with a new dataset, please define the dataset by following the template in the ['pi_seg/data/datasets'](pi_seg/data/datasets) folder. Afterward, add the dataset object to the ['pi_seg/data/datasets/__init__.py'](pi_seg/data/datasets/__init__.py) file before proceeding.
+
 #### Training
 ```bash
 python main.py
@@ -63,9 +67,8 @@ python main.py
 python test.py
 ```
 
-
 ### Graphical User Interface (GUI)
-We provide a simple GUI for evaluating the trained model and enabling practical interaction. A demo using the Lucchi++ dataset is available **[here](https://45d842e19a3b774a6f.gradio.live)**.  
+We provide a simple GUI for evaluating the trained model and enabling practical interaction. A demo using the Lucchi++ dataset is available **[here](https://caf65f85bdb3d2cb0f.gradio.live)**.
 Users can specify any trained model within [`run_gui.py`](run_gui.py) and launch the interface as follows:
 ```bash
 python run_gui.py
