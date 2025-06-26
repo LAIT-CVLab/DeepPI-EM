@@ -28,7 +28,7 @@ class DeepPI(ISModel):
     def backbone_forward(self, image, mask=None, sample_cnt=1, coord_features=None, training=True, un_weight=False, un_scale=(2, 1)):        
         if training:
             self.feature_extractor.forward(patch=image, segm=mask, coord_features=coord_features, training=training)
-            ps = [self.feature_extractor.sample(testing=True) for _ in range(sample_cnt)]
+            ps = [self.feature_extractor.sample(testing=False) for _ in range(sample_cnt)]
             
             outputs = self.feature_extractor.elbo(mask, ps, un_weight=un_weight, un_scale=un_scale)
             outputs['samples'] = ps

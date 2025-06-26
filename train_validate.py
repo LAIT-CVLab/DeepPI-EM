@@ -124,7 +124,7 @@ def validate_model(model, val_loader):
     Evaluates the model on the validation dataset and returns performance metrics.
     """
     # Initialize lists to store metrics for each sample.
-    val_loss_lst, accuracy_lst, iou_lst, recall_lst, precision_lst, dsc_lst = [], [], [], [], [], []
+    accuracy_lst, iou_lst, recall_lst, precision_lst, dsc_lst = [], [], [], [], []
 
     # Set model to evaluation mode and disable gradients.
     with torch.no_grad():
@@ -151,13 +151,6 @@ def validate_model(model, val_loader):
             net_input = torch.cat((image, prev_output), dim=1) if model.module.with_prev_mask else image
             output = model(image=net_input, mask=gt_mask, points=points, training=False, sample_cnt=SAMPLE_CNT, un_weight=False)
             
-            reg_loss = l2_regularisation(model.module.feature_extractor.posterior) + \
-                       l2_regularisation(model.module.feature_extractor.prior) + \
-                       l2_regularisation(model.module.feature_extractor.fcomb.layers)
-            elbo = output['loss'].mean()
-            loss = elbo + 1e-3 * reg_loss
-            val_loss_lst.append(loss.item())
-
             # Calculate performance metrics for each item in the batch.
             output_mean = torch.stack(ps).mean(dim=0)
             for res, tar in zip(output_mean, gt_mask):
@@ -176,7 +169,6 @@ def validate_model(model, val_loader):
 
     # Aggregate the metrics by taking the mean across all validation samples.
     metrics = {
-        "val_loss": np.mean(val_loss_lst),
         "accuracy": np.mean(accuracy_lst),
         "iou": np.mean(iou_lst),
         "recall": np.mean(recall_lst),
@@ -185,7 +177,7 @@ def validate_model(model, val_loader):
     }
     
     # Print a summary of the validation results.
-    print(f"Validation - Loss: {metrics['val_loss']:.4f}, IoU: {metrics['iou']:.4f}, Precision: {metrics['precision']:.4f}, Recall: {metrics['recall']:.4f}, DSC: {metrics['dsc']:.4f}")
+    print(f"IoU: {metrics['iou']:.4f}, Precision: {metrics['precision']:.4f}, Recall: {metrics['recall']:.4f}, DSC: {metrics['dsc']:.4f}")
 
     return metrics
 
