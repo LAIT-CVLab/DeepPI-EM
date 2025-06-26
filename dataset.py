@@ -29,6 +29,15 @@ elif DATASET_NAME == "SkeletalMuscle":
 else:
     raise ValueError("Invalid dataset name! Choose between 'Lucchi' and 'SkeletalMuscle'.")
 
+# --- 데이터셋 정보 출력 (추가된 부분) ---
+print("\n" + "="*50)
+print("DATASET & DATALOADER INFORMATION")
+print("="*50)
+print(f"[*] Dataset Name : {DATASET_NAME}")
+print(f"[*] Dataset Path : {DATASET_DIR}")
+# ----------------------------------------
+
+
 # Training dataset
 trainset = DatasetClass(
     dataset_path=os.path.join(DATASET_DIR, 'train'),
@@ -53,3 +62,12 @@ valset = DatasetClass(
 # DataLoaders
 train_dataloader = DataLoader(trainset, batch_size=BATCH_SIZE, shuffle=True, pin_memory=True, num_workers=8)
 val_dataloader = DataLoader(valset, batch_size=VAL_BATCH_SIZE, pin_memory=True, num_workers=8)
+
+
+# --- 데이터 로더 정보 출력 (추가된 부분) ---
+print(f"[*] Train Samples  : {len(trainset)} images, {len(train_dataloader)} batches")
+print(f"[*] Train Batch Size : {BATCH_SIZE}")
+print(f"[*] Val Samples    : {len(valset)} images, {len(val_dataloader)} batches")
+print(f"[*] Val Batch Size   : {VAL_BATCH_SIZE}")
+print("="*50 + "\n")
+# ------------------------------------
